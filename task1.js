@@ -45,11 +45,11 @@
 
 // 6. filter
 // methode yang digunakan untuk mendapatkan value dengan kriteria tertentu
-const angka = [1,4,5,6,78,23,14,15]
-var angka2 = angka.filter(function(x){
-    return x > 5;
-});
-console.log(angka2.join('-'))
+// const angka = [1,4,5,6,78,23,14,15]
+// var angka2 = angka.filter(function(x){
+//     return x > 5;
+// });
+// console.log(angka2.join('-'))
 
 // 7. find
 // menemukan suatu value dengan kriteria tertentu
