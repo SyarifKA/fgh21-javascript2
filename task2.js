@@ -1,45 +1,65 @@
 // program searching nama
 
-// const names = ['Abigail', 'Alexandra', 'Alison', 'Amanda', 'Angela', 'Bella', 'Carol', 'Caroline', 'Carolyn', 'Deirdre', 'Diana', 'Elizabeth', 'Ella', 'Faith', 'Olivia', 'Penelope']
-
-// const callback = (name,str) => {
-//     return name.toLowerCase().includes(str)
-// }
-
-
-// const searchName = (str,limit,callback) => {
-//     let temp = names.filter((name) => callback(name, str))
-//     let result=[]
-    
-//     for (let i = 0; i < limit; i++){
-//     result.push(temp[i])
-//     }
-//     return result
-// };
+// let keyword = 'an'
+// let limit = 3
 
 
 
-// // console.log(searchName("an",3),checkString())
-// console.log(searchName("an", 3, callback))
+const searchName = function (keyword, limit, cb) {
+    const name = ['Abigail', 'Alexandra', 'Alison', 'Amanda', 'Angela', 'Bella', 'Carol', 'Caroline', 'Carolyn', 'Deirdre', 'Diana', 'Elizabeth', 'Ella', 'Faith', 'Olivia', 'Penelope']
 
-const names = ['Abigail', 'Alexandra', 'Alison', 'Amanda', 'Angela', 'Bella', 'Carol', 'Caroline', 'Carolyn', 'Deirdre', 'Diana', 'Elizabeth', 'Ella', 'Faith', 'Olivia', 'Penelope']
+    const upCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    const lowCase = 'abcdefghijklmnopqrstuvwxyz'
+    let searchResult = []
 
-function searchName(arr, cb) {
-    let result = []
-    for (let i = 0; i < arr.length; i++){
-        const newName = arr[i]
-            result = [...result, newName]
-    }
-    // console.log(result)
-    cb(result, 3)
+    for (let i = 0; i < name.length; i++) {
+        const personName = name[i]
+        let result = ''
+       
+        for (let i = 0; i < personName.length; i++) {
+            let converted = false
+            for (let j = 0; j < upCase.length; j++) {
+                if (converted === false) {
+                    if (personName[i] === upCase[j]) {
+                        result += lowCase[j]
+                        converted = true
+                    }
+                    if (j === 25) {
+                        if (personName[i] !== upCase[j]) {
+                            result += personName[i]
+                            converted = true
+                        }
+                    }
+                }
+            }
+        }
+            let isFound = false
+            for (let i = 0; i < result.length; i++) {
+                let segment = ''
+                for (let j = i; j < keyword.length + i; j++) {
+                    if (result[j] !== undefined) {
+                        segment += result[j]
+                    }
+                }
+                if (segment === keyword) {
+                    isFound = true
+                }
+            }
+            // console.log(isFound)
+            if (isFound === true) {
+                searchResult = [...searchResult, personName]
+            }
+        }
+    // console.log(searchResult)
+    cb(searchResult, limit)
 }
 
-function limit(arr, lim) {
+function limitResult(arr, lim) {
     let result = []
-    for (let i = 0; i < lim; i++){
-        result = [...result, arr[i]]
+    for (i = 0; i < lim; i++){
+        result[i] = arr[i]
     }
     console.log(result)
 }
 
-searchName(names, limit)
+searchName('an', 3, limitResult)
