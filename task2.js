@@ -1,10 +1,5 @@
 // program searching nama
 
-// let keyword = 'an'
-// let limit = 3
-
-
-
 const searchName = function (keyword, limit, cb) {
     const name = ['Abigail', 'Alexandra', 'Alison', 'Amanda', 'Angela', 'Bella', 'Carol', 'Caroline', 'Carolyn', 'Deirdre', 'Diana', 'Elizabeth', 'Ella', 'Faith', 'Olivia', 'Penelope']
 
@@ -45,12 +40,10 @@ const searchName = function (keyword, limit, cb) {
                     isFound = true
                 }
             }
-            // console.log(isFound)
             if (isFound === true) {
                 searchResult = [...searchResult, personName]
             }
         }
-    // console.log(searchResult)
     cb(searchResult, limit)
 }
 
